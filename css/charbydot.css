@@ -23,6 +23,16 @@ html, body, div, input, button, label {
   font-weight: normal;
   font-style: normal;
 }
+html, body {
+  max-height: 100vh;
+  overflow-y: hidden;
+}
+div#header {
+  border-bottom: 1px solid;
+}
+h3.title {
+  margin: 4px 8px;
+}
 div.scroll-y {
   box-sizing: border-box;
   overflow-y: auto;
@@ -52,7 +62,9 @@ div.last {
   flex: auto;
 }
 div#main {
-  padding: 10px 24px;
+  /* 画面の高さ - ヘッダー分 - padding */
+  max-height: calc(100vh - 29px);
+  padding: 8px;
   flex-direction: column;
   display: flex;
   justify-content: start;

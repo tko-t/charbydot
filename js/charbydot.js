@@ -93,8 +93,6 @@ function getCurrentColor() {
   const checked = document.getElementById("colors").querySelector('input[name="radio"]:checked')
   if (checked) return checked.parentNode.querySelector('*[name="color"]').dataset.value
 
-  console.log("checkedがない")
-
   // checked無いなら一番上を選択(自由色選択してテーブル再作成したときとか)
   const defaultColor = document.getElementById("colors").querySelectorAll('input[name="radio"]')[0]
   defaultColor.checked = true
@@ -121,6 +119,7 @@ function toStr() {
   }
 }
 
+// 結果をクリア
 function clearStr() {
   document.getElementById("resultText").value = ""
 }
@@ -137,7 +136,7 @@ function loadFonts() {
   }
 }
 // テキストを画像化
-async function drawText(char) {
+function drawText(char) {
   if (char.length <= 0) throw new Error("文字入れてね")
 
   const fontSize = getFontSize().toString();
@@ -156,7 +155,7 @@ async function drawText(char) {
 }
 
 // 文字列のドット情報をテーブル化
-async function charToDot() {
+function charToDot() {
   try {
     clearCharDot()      // 既存のドットテーブルをクリア
     clearAddedColors()  // 追加の色をクリア
@@ -178,7 +177,7 @@ async function charToDot() {
     if (toDotStr.length == 0) return
 
     for (const [i, char] of Array.from(toDotStr).entries()) {
-      await drawText(char) // 文字を画像化
+      drawText(char) // 文字を画像化
 
       for(var y=0; y < getDotMapSize(); y++) {
         var row = document.createElement('tr');
@@ -294,9 +293,9 @@ function getDefaultColors() {
     .map(span => { return span.dataset.value })
 }
 // 草が変更された
-function changeChar(){
-  document.getElementById("charToDotButton").textContent  = document.getElementById("toDotString").value;
-}
+//function changeChar(){
+//  document.getElementById("charToDotButton").textContent  = document.getElementById("toDotString").value;
+//}
 // 結果エリアの表示
 function showResult() {
   document.getElementById('result').classList.remove("hidden");

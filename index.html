@@ -6,6 +6,9 @@
     <script src="./js/charbydot.js"></script>
   </head>
   <body onload="loadFonts()">
+    <div id="header" class="row">
+      <h3 class="title">草で草って書くやつ</h3>
+    </div>
     <div id="main">
       <div class="col">
         <div class="row center">
@@ -26,7 +29,7 @@
           </div>
         </div>
         <div class="row">
-          <input id="toDotString" class="text" placeholder="焼肉定食" value="草" maxlength="8" onchange="changeChar(); charToDot()">
+          <input id="toDotString" class="text" placeholder="草" value="草" maxlength="8" onchange="charToDot()">
           <button id="charToDotButton" onClick="charToDot()">草</button>
         </div>
       </div>
