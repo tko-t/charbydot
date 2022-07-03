@@ -27,7 +27,9 @@ function createTable() {
       col.addEventListener('click', function() {
         const currentColor = getCurrentColor();
         if (event.shiftKey) {
-          fill(event.currentTarget, event.currentTarget.dataset.color == currentColor)
+          rangeFill(event.currentTarget, event.currentTarget.dataset.color == currentColor)
+        } else if (event.ctrlKey) {
+          someColorFill(event.currentTarget)
         } else {
           if (event.currentTarget.dataset.color == currentColor) {
             event.currentTarget.style=`background-color: ${event.currentTarget.dataset.origin}`
@@ -198,7 +200,9 @@ function charToDot() {
           col.addEventListener('click', function() {
             currentColor = getCurrentColor()
             if (event.shiftKey) {
-              fill(event.currentTarget, event.currentTarget.dataset.color == currentColor)
+              rangeFill(event.currentTarget, event.currentTarget.dataset.color == currentColor)
+            } else if (event.ctrlKey) {
+              someColorFill(event.currentTarget)
             } else {
               if (event.currentTarget.dataset.color == currentColor) {
                 event.currentTarget.style=`background-color: ${event.currentTarget.dataset.origin}`
@@ -221,9 +225,26 @@ function charToDot() {
     alert(e.message)
   }
 }
+
+function someColorFill(eventTarget) {
+  const table = document.getElementById('charDotTable');
+  const rowCount = table.getElementsByTagName('tr').length
+  const colCount = table.getElementsByTagName('tr')[0].getElementsByTagName('td').length
+  const currentColor = getCurrentColor();
+  const targetColor = eventTarget.dataset.color
+  for(var i = 0; i < colCount; i++) {
+    for(var j = 0; j < rowCount; j++) {
+      td = table.getElementsByTagName('tr')[j].getElementsByTagName('td')[i]
+      if (td.dataset.color == targetColor) {
+        td.style=`background-color: ${currentColor}`
+        td.dataset.color = currentColor
+      }
+    }
+  }
+}
 // 直前のクリック位置から現在のクリック位置まで塗りつぶす
 // peel == true の場合は元の色に戻す
-function fill(eventTarget, peel) {
+function rangeFill(eventTarget, peel) {
   const table = document.getElementById('charDotTable');
   const minX = Math.min(lastClick.x, eventTarget.dataset.x)
   const maxX = Math.max(lastClick.x, eventTarget.dataset.x)
