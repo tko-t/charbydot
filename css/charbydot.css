@@ -1,0 +1,115 @@
+@font-face {
+  font-family: 'PixelMplus12';
+  src: url(./assets/PixelMplus12-Regular.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PixelMplus10';
+  src: url(./assets/PixelMplus10-Regular.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: sans-serif, monospace;
+}
+
+html, body, div, input, button, label {
+  font-family: sans-serif;
+  box-sizing: border-box;
+  max-height: 100%;
+  margin: 0;
+  font-weight: normal;
+  font-style: normal;
+}
+div.scroll-y {
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+input[type="text"] {
+  font-family: monospace, monospace;
+}
+table#tblArea {
+  border: 1px solid #444444;
+}
+div {
+  max-height: 100%;
+  display: flex;
+  gap: 8px;
+}
+div.row {
+  flex-direction: row;
+}
+div.col {
+  flex-direction: column;
+}
+div.center {
+  align-items: center;
+}
+div.last {
+  justify-content: flex-start;
+  flex: auto;
+}
+div#main {
+  padding: 10px 24px;
+  flex-direction: column;
+  display: flex;
+  justify-content: start;
+  gap: 8px;
+}
+div#colors {
+  flex-direction: column;
+  justify-content: start;
+}
+div.content {
+  overflow: hidden;
+}
+div.colors.wrapper {
+  align-items: flex-start;
+  overflow: auto;
+}
+span[name="color"] {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  border: solid 1px;
+  margin: 0 8px;
+}
+input[type="color"] {
+  width: 26px;
+  height: 26px;
+  margin: 0 8px;
+}
+input[name="color-text"] {
+  height: 26px;
+  flex: auto;
+}
+input.text {
+  width: 64px;
+  height: 24px;
+}
+input.num {
+  width: 64px;
+  height: 24px;
+}
+input#toDotString {
+  width: 10em;
+}
+button {
+  height: 24px;
+}
+td {
+  border: solid 1px #aaa;
+  width: 40px;
+  height: 40px;
+}
+textarea#resultText {
+  border: none;
+  height:auto;
+  flex: auto;
+}
+.hidden { display: none; }
+.dotColor {
+  display: flex;
+}

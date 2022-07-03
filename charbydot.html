@@ -1,0 +1,81 @@
+<html>
+  <!--
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com; connect-src ; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src * blob:; media-src * blob:">
+  -->
+  <head>
+    <link rel="stylesheet" href="./css/charbydot.css">
+    <script src="./js/charbydot.js"></script>
+  </head>
+  <body onload="loadFonts()">
+    <div id="main">
+      <div class="col">
+        <div class="row center">
+          <label>縦</label><input id="vpx" class="num" type="number" placeholder="縦" value="12"><label>px</label>
+        </div>
+        <div class="row center">
+          <label>横</label><input id="hpx" class="num" type="number" placeholder="横" value="12"><label>px</label>
+          <button onClick="createTable()">自由に草</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="row center">
+            <input type="radio" name="dotMap" checked id="12_12" value="12"/><label for="12_12">12×12</label>
+          </div>
+          <div class="row center">
+            <input type="radio" name="dotMap" id="10_10" value="10"/><label for="10_10">10×10</label>
+          </div>
+        </div>
+        <div class="row">
+          <input id="toDotString" class="text" placeholder="焼肉定食" value="草" maxlength="8" onchange="changeChar(); charToDot()">
+          <button id="charToDotButton" onClick="charToDot()">草</button>
+        </div>
+      </div>
+      <div class="row content">
+        <div class="colors wrapper">
+          <div id="colors">
+            <button onClick="addColor()">色追加</button>
+            <div class="row">
+              <button onClick="oneColor()">まとめて変更</button>
+              <input type="text" id="oneColor" value="">
+            </div>
+            <div class="dotColor row center default">
+              <input type="radio" name="radio" onchange="checkedCurrentColor()"/>
+              <span name="color" style="background-color: #000000ff" data-value="#000000ff" onClick="checkedCurrentColor()"></span>
+              <input type="text"  name="color-text" value="#000000ff">
+            </div>
+            <div class="dotColor row center default">
+              <input type="radio" name="radio" onchange="checkedCurrentColor()"/>
+              <span name="color" style="background-color: #00000000" data-value="#00000000" onClick="checkedCurrentColor()"></span>
+              <input type="text" name="color-text" value="#00000000">
+            </div>
+          </div>
+        </div>
+        <div class="tbl wrapper">
+          <div id="tblArea" class="col scroll-y"></div>
+        </div>
+        <div id="result" class="col hidden last">
+          <button onClick="toStr()">文字にする</button>
+          <button onClick="copy()">クリップボードにコピーする</button>
+          <textarea id="resultText" readonly onClick="copy()"></textarea>
+        </div>
+      </div>
+
+      <div class="hidden">
+        <div class="col">
+          <canvas width=16 height=16 id="preview"></canvas>
+        </div>
+        <div name="freeColor" class="row center">
+          <input type="radio" name="radio" onchange="checkedCurrentColor()"/>
+          <input type="color" name="color" onclick="setDataset(); checkedCurrentColor()" onchange="setDataset(); checkedCurrentColor()" />
+          <input type="text"  name="color-text">
+        </div>
+        <div name="usedColor" class="row center">
+          <input type="radio" name="radio" onchange="checkedCurrentColor()"/>
+          <span name="color" onClick="checkedCurrentColor()"></span>
+          <input type="text"  name="color-text">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
