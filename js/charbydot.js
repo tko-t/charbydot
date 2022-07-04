@@ -1,4 +1,3 @@
-var baseColor;    // 元の色
 var lastClick = {x: 0, y: 0} // 最後にクリックした座標
 
 // フリーのドットマップテーブルを作成
@@ -8,7 +7,6 @@ function createTable() {
   const div = document.getElementById('tblArea');
   var table = document.createElement('table');
   const currentColor = getCurrentColor();
-  this.baseColor = currentColor;
   table.id = "charDotTable";
 
   clearCharDot();     // 既存のドットテーブルをクリア
@@ -22,6 +20,7 @@ function createTable() {
       var col = document.createElement('td');
       col.style=`background-color: ${currentColor}`
       col.dataset.color = currentColor
+      col.dataset.origin = currentColor
       col.dataset.x = h
       col.dataset.y = v
       col.addEventListener('click', function() {
@@ -46,7 +45,6 @@ function createTable() {
     }
   }
   div.appendChild(table)
-  showResult()
 }
 
 // ドットマップのサイズを取得（正方形）
@@ -110,14 +108,32 @@ function getText(hexColorStr){
 }
 
 // ドットテーブルを文字列化
-function toStr() {
+function toStr(vertical=true) {
   const table = document.getElementById("charDotTable")
   if (table) {
     const records = Array.from(table.querySelectorAll("tr")).map(function(tr) {
       return Array.from(tr.children).map(function(td) { return getText(td.dataset.color) }).join("")
+    }).filter(v => v)
+
+    if (vertical) {
+      document.getElementById("resultText").value = records.join("\n")
+
+      return
+    }
+
+    const len = getDotMapSize();
+    const groupRecords = []
+
+    records.forEach((record, i) => {
+      if (groupRecords[Math.ceil(i%len)] == null) groupRecords[Math.ceil(i%len)] = [];
+      groupRecords[i%len].push(record)
     })
-    // 空白行は除外
-    document.getElementById("resultText").value = records.filter(v => v).join("\n")
+
+    const value = groupRecords.map(groupRecord => {
+      return groupRecord.join("")
+    }).join("\n")
+
+    document.getElementById("resultText").value = value
   }
 }
 
@@ -220,7 +236,6 @@ function charToDot() {
       }
     }
     tblArea.appendChild(table)
-    showResult()
   } catch(e) {
     alert(e.message)
   }
@@ -318,6 +333,18 @@ function getDefaultColors() {
 //  document.getElementById("charToDotButton").textContent  = document.getElementById("toDotString").value;
 //}
 // 結果エリアの表示
-function showResult() {
-  document.getElementById('result').classList.remove("hidden");
+function showResult(kusa=true) {
+  const result = document.getElementById('result')
+  result.classList.remove("hidden");
+
+  const kusaBtns = result.querySelectorAll("button[name='kusa']")
+  const freeBtns = result.querySelectorAll("button[name='free']")
+
+  if (kusa) {
+    kusaBtns.forEach(btn => { btn.removeAttribute('hidden') })
+    freeBtns.forEach(btn => { btn.setAttribute('hidden', true) })
+  } else {
+    kusaBtns.forEach(btn => { btn.setAttribute('hidden', true) })
+    freeBtns.forEach(btn => { btn.removeAttribute('hidden', false) })
+  }
 }

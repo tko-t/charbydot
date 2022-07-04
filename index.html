@@ -16,7 +16,7 @@
         </div>
         <div class="row center">
           <label>横</label><input id="hpx" class="num" type="number" placeholder="横" value="12"><label>px</label>
-          <button onClick="createTable()">自由に草</button>
+          <button onClick="createTable(); showResult(false)">自由に草</button>
         </div>
       </div>
       <div class="row">
@@ -29,8 +29,8 @@
           </div>
         </div>
         <div class="row">
-          <input id="toDotString" class="text" placeholder="草" value="草" maxlength="8" onchange="charToDot()">
-          <button id="charToDotButton" onClick="charToDot()">草</button>
+          <input id="toDotString" class="text" placeholder="草" value="草" maxlength="8" onchange="charToDot(); showResult()">
+          <button id="charToDotButton" onClick="charToDot(); showResult()">草</button>
         </div>
       </div>
       <div class="row content">
@@ -57,9 +57,11 @@
           <div id="tblArea" class="col scroll-y"></div>
         </div>
         <div id="result" class="col hidden last">
-          <button onClick="toStr()">文字にする</button>
+          <button name="free" onClick="toStr()">文字にする</button>
+          <button name="kusa" onClick="toStr()">文字にする(縦)</button>
+          <button name="kusa" onClick="toStr(false)">文字にする(横)</button>
           <button onClick="copy()">クリップボードにコピーする</button>
-          <textarea id="resultText" readonly onClick="copy()"></textarea>
+          <textarea id="resultText" onClick="copy()"></textarea>
         </div>
       </div>
 
