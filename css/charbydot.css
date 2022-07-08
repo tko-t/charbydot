@@ -12,7 +12,7 @@
 }
 
 * {
-  font-family: monospace. sans-serif;
+  font-family: monospace, sans-serif;
 }
 
 html, body, div, input, button, label {
@@ -29,6 +29,42 @@ html, body {
 }
 div#header {
   border-bottom: 1px solid;
+}
+div#help {
+  align-items: center;
+}
+a.help {
+  margin: 0;
+  font-weight: bold;
+}
+div.help-list {
+  position: absolute;
+  top: 24px;
+  left: auto;
+  overflow-y: hidden;
+  max-height: 0px;
+  transition: max-height 0.3s;
+  background-color: #ffffff;
+}
+ul.help {
+  list-style-type: none;
+  padding-inline-start: 12px;
+  padding-inline-end: 12px;
+  margin-bottom: 2px;
+}
+div.help-list.show {
+  max-height: 116px;
+  border: 1px solid #aaaaaa4f;
+  box-shadow: 2px 2px 2px 1px #4444440f;
+  /*
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border: 1px solid #aaaaaa4f;
+  box-shadow: 2px 2px 2px 1px #4444440f;
+  */
+}
+li {
+  margin-bottom: 16px;
 }
 h3.title {
   margin: 4px 8px;
@@ -110,6 +146,7 @@ input#toDotString {
 }
 button {
   height: 24px;
+  word-break: keep-all;
 }
 td {
   border: solid 1px #aaa;

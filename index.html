@@ -5,9 +5,25 @@
     <link rel="stylesheet" href="./css/charbydot.css">
     <script src="./js/charbydot.js"></script>
   </head>
-  <body onload="loadFonts()">
+  <body onload="loadFonts()" onClick="help(false)">
     <div id="header" class="row">
       <h3 class="title">草で草って書くやつ</h3>
+      <div id="help">
+        <a href="#" onClick="help(true)" class="help">help</a>
+        <div class="help-list">
+          <ul class="help">
+            <li>
+              <a href="https://github.com/tko-t/charbydot/wiki">使い方</a>
+            </li>
+            <li>
+              <a href="https://github.com/tko-t/charbydot/wiki/%E8%87%AA%E7%94%B1%E3%81%AB%E8%8D%89%E3%82%92%E6%9B%B8%E3%81%8F">自由に草</a>
+            </li>
+            <li>
+              <a href="https://github.com/tko-t/charbydot/wiki/%E8%8D%89%E3%81%A7%E8%8D%89%E3%81%A3%E3%81%A6%E6%9B%B8%E3%81%8F">草で草</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div id="main">
       <div class="col">
@@ -38,7 +54,7 @@
           <div id="colors">
             <button onClick="addColor()">色追加</button>
             <div class="row">
-              <button onClick="oneColor()">まとめて変更</button>
+              <button onClick="oneColor()">一括変更</button>
               <input type="text" id="oneColor" value="">
             </div>
             <div class="dotColor row center default">
@@ -60,7 +76,7 @@
           <button name="free" onClick="toStr()">文字にする</button>
           <button name="kusa" onClick="toStr()">文字にする(縦)</button>
           <button name="kusa" onClick="toStr(false)">文字にする(横)</button>
-          <button onClick="copy()">クリップボードにコピーする</button>
+          <button onClick="copy()">クリップボードにコピー</button>
           <textarea id="resultText" onClick="copy()"></textarea>
         </div>
       </div>

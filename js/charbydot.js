@@ -348,3 +348,12 @@ function showResult(kusa=true) {
     freeBtns.forEach(btn => { btn.removeAttribute('hidden', false) })
   }
 }
+
+function help(show) {
+  event.stopPropagation()
+  const list = document.querySelector('div.help-list')
+
+  if (show) return list.classList.add('show')
+
+  list.classList.remove("show")
+}
