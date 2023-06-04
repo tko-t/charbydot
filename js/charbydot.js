@@ -27,7 +27,7 @@ function createTable() {
         const currentColor = getCurrentColor();
         if (event.shiftKey) {
           rangeFill(event.currentTarget, event.currentTarget.dataset.color == currentColor)
-        } else if (event.ctrlKey) {
+        } else if (event.ctrlKey || event.metaKey) {
           someColorFill(event.currentTarget)
         } else {
           if (event.currentTarget.dataset.color == currentColor) {
